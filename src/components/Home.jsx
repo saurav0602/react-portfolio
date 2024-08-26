@@ -47,7 +47,7 @@ const Home = () => {
                 initial={{ x: 100,opacity: 0}}
                 animate={{ x: 0, opacity: 1}}
                 transition={{duration: 1, delay: 1.2}}
-                className='w-4/5 sm:w-3/4 md:w-3/4 lg:w-2/3'
+                className='w-3/4 sm:w-2/3 lg:w-1/2'
                 src={home} alt="home"/>
             </div>
             </div>
