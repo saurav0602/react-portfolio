@@ -1,15 +1,52 @@
-import React from "react";
-import {motion} from 'framer-motion'
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
+
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    fullname: "",
+    mobile: "",
+    email: "",
+    address: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_xcd6pcq",
+        "template_ualpdrs",
+        formData,
+        "uOOgwgPo5fLsb8ZvE"
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          alert("Message sent successfully!");
+        },
+        (err) => {
+          console.error("FAILED...", err);
+          alert("Failed to send the message, please try again.");
+        }
+      );
+  };
+
   return (
     <motion.div
-    whileInView={{ opacity: 1,x: 0}}
-    initial={{ opacity: 0, x: 100}}
-    transition={{ duration: 0.5}}
-     className="flex items-center justify-center min-h-screen">
+      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.5 }}
+      className="flex items-center justify-center min-h-screen"
+    >
       <div className="w-full max-w-screen-lg p-6 rounded-lg shadow-md">
         <h2 className="text-4xl text-center mb-6">Contact Us</h2>
-        <form action="#" method="POST" className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
               <label
@@ -23,7 +60,9 @@ const Contact = () => {
                 id="fullname"
                 name="fullname"
                 required
-                className="mt-1 block w-full h-10  border-gray-300 rounded-md shadow-sm text-black focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                value={formData.fullname}
+                onChange={handleChange}
+                className="mt-1 block w-full h-10 border-gray-300 rounded-md shadow-sm text-black focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
               />
             </div>
             <div>
@@ -38,7 +77,9 @@ const Contact = () => {
                 id="mobile"
                 name="mobile"
                 required
-                className="mt-1 block w-full h-10  text-black border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                value={formData.mobile}
+                onChange={handleChange}
+                className="mt-1 block w-full h-10 text-black border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
               />
             </div>
           </div>
@@ -55,22 +96,26 @@ const Contact = () => {
                 id="email"
                 name="email"
                 required
-                className="mt-1 block w-full h-10  text-black border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50"
+                value={formData.email}
+                onChange={handleChange}
+                className="mt-1 block w-full h-10 text-black border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50"
               />
             </div>
             <div>
               <label
-                htmlFor="email"
+                htmlFor="address"
                 className="block text-sm font-medium text-white-700"
               >
                 Address
               </label>
               <input
-                type="address"
+                type="text"
                 id="address"
-                name="adress"
+                name="address"
                 required
-                className="mt-1 block w-full h-10  text-black border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50"
+                value={formData.address}
+                onChange={handleChange}
+                className="mt-1 block w-full h-10 text-black border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50"
               />
             </div>
           </div>
@@ -86,7 +131,9 @@ const Contact = () => {
               name="message"
               rows="4"
               required
-              className="mt-1 block w-full  text-black border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50"
+              value={formData.message}
+              onChange={handleChange}
+              className="mt-1 block w-full text-black border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50"
             ></textarea>
           </div>
           <button
