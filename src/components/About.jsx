@@ -1,3 +1,4 @@
+
 import React from "react";
 import about from "../assets/about.jpg";
 import {motion} from "framer-motion";

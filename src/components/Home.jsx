@@ -28,29 +28,32 @@ const Home = () => {
                  variants={Container(0.5)}
                  initial='hidden'
                  animate='visible'
-                 className='bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-2xl tracking-tight text-transparent sm:text-3xl'>
+                 className='bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-2xl tracking-tight text-transparent sm:text-4xl'>
                     Full Stack Developer
                 </motion.span>
                 <motion.p 
                  variants={Container(1)}
                  initial='hidden'
                  animate='visible'
-                className='my-4 max-w-xl py-4 font-light tracking-tighter lg:text-xl'>
+                 className='hidden sm:block my-4 mb-4 sm:mb-8 py-4 max-w-xl font-light tracking-tight text-sm sm:text-base lg:text-lg'>
                 I am a passionate full stack developer with a knack for crafting robust and scalable web applications. With 2 years of hands-on experience, I have honed my skills in front-end technologies like React and Tailwind, as well as back-end technologies like Node.js, Express.js, and MongoDB. 
 
                 </motion.p>
             </div>
             </div>
             <div className='w-full lg:w-1/2 lg:p-8'>
-            <div className='flex justify-center'>
-                <motion.img
-                initial={{ x: 100,opacity: 0}}
-                animate={{ x: 0, opacity: 1}}
-                transition={{duration: 1, delay: 1.2}}
-                className='w-3/4 sm:w-2/3 lg:w-1/2'
-                src={home} alt="home"/>
-            </div>
-            </div>
+  <div className='flex justify-center'>
+    <motion.img
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 1.2 }}
+      className='w-3/4 sm:w-2/3 lg:w-1/2 mt-8 sm:mt-15'
+      src={home}
+      alt="home"
+    />
+  </div>
+</div>
+
         </div>
       
     </div>
